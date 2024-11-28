@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body style="background: #2980b9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2980b9, #6dd5fa, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff); ">
+<div th:replace="guest/headerHome.html::header"></div>
+<div class=" py-3 px-3 rounded-lg">
+    <img src="/images/slider_2.jpg" style="height: 550px; width: 100%">
+</div>
+
+
+
+<div class="overflow-x-auto p-6" style="padding: 20px;width: 100%;margin-left:50%;transform: translateX(-50%)">
+    <div class="min-w-full overflow-hidden rounded-lg border border-gray-300 shadow-lg " style="padding: 20px">
+        <table class="min-w-full divide-y divide-gray-300">
+            <thead class="bg-gradient-to-r from-indigo-500 to-indigo-400 text-white">
+            <tr>
+                <img src="/images/flash-sale_home.png" alt="" style="height: 100px; width: 150px">
+            </tr>
+            </thead>
+            <tbody class="rounded-lg hover:rounded-lg"
+                   style="margin-left:50%;transform: translateX(-50%);width: fit-content; display: grid;
+                      grid-template-columns: auto auto auto;
+                      gap: 20px;
+                       background: #ffefba; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #ffefba, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #ffefba, #ffffff);
+                         border-radius: 0.5rem
+                    ">
+            <tr class="rounded-lg hover:rounded-lg hover:bg-slate-100 transition p-3" th:each="product: ${products}">
+                <td class="px-6 py-4 text-sm ">
+                    <a th:href="@{/laptop/{laptopId}(laptopId=${product.productId})}">
+                        <img  style="width: 300px;height: 300px" class='img-thumbnail' th:src="@{'/images/'+${product.hinhanh}}">
+                    </a>
+                    <p class="text-center" th:text="${product.tensanpham} "></p>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div style="gap: 10px;display: flex;justify-content: center">
+    <div>
+        <img th:src="@{/images/banner-1.png}">
+    </div>
+    <div>
+        <img th:src="@{/images/banner-2.png}">
+    </div>
+</div>
+<div style="display: flex;justify-content: center;padding-top:10px ">
+    <img th:src="@{/images/logo/acer.png}">
+    <img th:src="@{/images/logo/asus.png}">
+    <img th:src="@{/images/logo/Dell.png}">
+    <img th:src="@{/images/logo/hp.png}">
+
+</div>
+
+<div style="display: flex;justify-content: center">
+    <img th:src="@{/images/logo/intel.png}">
+    <img th:src="@{/images/logo/lenovo.png}">
+    <img th:src="@{/images/logo/macbook.png}">
+    <img th:src="@{/images/logo/msi.png}">
+
+</div>
+
+</body>
+</html>

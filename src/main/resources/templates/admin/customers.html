@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Customer List</title>
+    <link th:href="@{/main.css}" rel="stylesheet" />
+
+</head>
+<body class="bg-gray-100">
+<div th:replace="admin/header::header"></div>
+<div class="container mx-auto mt-10 p-8 bg-white shadow-xl rounded-lg">
+    <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-bold text-gray-800"><i class="fas fa-users"></i> Customer List</h2>
+        <div class="flex space-x-2">
+            <input type="text" class="border border-gray-300 rounded-md p-2 w-64 focus:ring-2 focus:ring-indigo-400 focus:outline-none" placeholder="Search customers...">
+            <button class="bg-indigo-500 text-white px-4 py-2 rounded-md shadow hover:bg-indigo-600 transition duration-300">
+                <i class="fas fa-filter"></i> Filter
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gradient-to-r from-indigo-500 to-indigo-400 text-white">
+            <tr>
+                <th class="p-4 text-left font-semibold">#</th>
+                <th class="p-4 text-left font-semibold">Khach Hang</th>
+                <th class="p-4 text-left font-semibold">Email</th>
+                <th class="p-4 text-left font-semibold">SDT</th>
+                <th class="p-4 text-left font-semibold">Dia Chi</th>
+                <th class="p-4 text-left font-semibold">Password</th>
+                <th class="p-4 text-left font-semibold">Create On</th>
+                <th class="p-4 text-left font-semibold">Update On</th>
+                <th class="p-4 text-left font-semibold">Actions</th>
+            </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+            <tr class="hover:bg-gray-50 transition" th:each="customer, cusStat : ${customers}">
+                <td class="p-4" th:text="${cusStat.count}">1</td>
+                <td class="p-4" th:text="${customer.customerId}">Khach Hang</td>
+                <td class="p-4" th:text="${customer.email}">Email</td>
+                <td class="p-4" th:text="${customer.sdt}">SDT</td>
+                <td class="p-4" th:text="${customer.diachi}">Dia Chi</td>
+                <td class="p-4" th:text="${customer.password}">Password</td>
+                <td class="p-4" th:text="${customer.createdOn}">Create On</td>
+                <td class="p-4" th:text="${customer.updatedOn}">Update On</td>
+                <td>
+<!--                    <a th:href="@{/admin/posts/{postId}/edit(postId=${post.id})}" class="bg-green-600">Edit</a>-->
+<!--                    <a th:href="@{/admin/posts/{postId}/delete(postId=${post.id})}" class="bg-red-600">Delete</a>-->
+                    <a class="bg-green-600 text-white font-medium px-4 py-2 rounded-md shadow-md hover:bg-green-700 transition duration-200">Edit</a>
+                    <a class="bg-red-600 text-white font-medium px-4 py-2 rounded-md shadow-md hover:bg-red-700 transition duration-200 ml-2">Delete</a>
+
+                </td>
+            </tr>
+            <!-- Additional rows if needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="admin/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:fragment="header">
+    <meta charset="UTF-8">
+    <title>Spring Boot Thymeleaf Blog App</title>
+    <link th:href="@{/main.css}" rel="stylesheet" />
+</head>
+<body>
+<header class="bg-gradient-to-r from-indigo-600 to-indigo-500 p-4 shadow-lg" style="position: sticky;top:0;z-index: 3">
+    <div class="container mx-auto flex justify-between items-center text-white">
+        <h1 class="text-3xl font-extrabold"><i class="fas fa-cogs"></i> Admin Dashboard</h1>
+        <nav class="flex space-x-6">
+            <a class="hover:text-gray-200" th:href="@{/guest/index.html}"><i class="fas fa-home"></i>Home</a>
+        </nav>
+    </div>
+
+    <div>
+        <form th:action="@{/laptop/search}">
+            <div>
+                <input type="text" name="query"/>
+                <button type="submit">sub</button>
+            </div>
+        </form>
+    </div>
+</header>
+</body>
+</html>

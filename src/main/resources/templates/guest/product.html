@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+<div th:replace="guest/headerHome.html::header"></div>
+<div class="container mx-auto p-6">
+    <div class="text-sm text-gray-600 mb-4">
+        <span>Home / Sản phẩm / Laptop / ACER</span>
+    </div>
+    <div class="bg-white shadow-lg rounded-lg flex flex-col md:flex-row ">
+        <div class="w-full md:w-1/2 p-5 flex justify-center">
+            <img style="width: 600px; height: 600px; border-radius: 10px;" class="img-thumbnail" th:src="@{'/images/' + ${product.hinhanh}}">
+        </div>
+        <div class="w-full md:w-1/2 p-5">
+            <h1 class="text-3xl font-bold mb-4 text-center text-gray-800" th:text="${product.tensanpham}"></h1>
+            <div class="flex justify-center mb-4">
+                <p class="text-2xl font-semibold text-green-600" th:text="${product.gia}"></p>
+            </div>
+            <div class="bg-yellow-100 p-4 rounded-lg mb-4 shadow-md">
+                <h3 class="font-semibold text-lg mb-2">🎁 Khuyến mãi</h3>
+                <ul class="list-disc pl-5">
+                    <li>Balo Gaming Acer SUV.2 trị giá 1.700.000đ</li>
+                </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg mb-4 shadow-md">
+                <p class="text-gray-700 text-base text-center" th:text="${product.cauhinh}"></p>
+            </div>
+            <div class=" space-x-4 mb-4">
+                <span th:if="${product.trangthai} == true">Còn Hàng</span>
+                <span th:if="${product.trangthai} == false">Hết Hàng</span>
+
+
+                <button class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition duration-300">ADD TO CART</button>
+            </div>
+        </div>
+    </div>
+    <img th:src="@{/images/Support.png}">
+    <p class="text-center text-gray-600 mt-4" th:text="${product.mota}"></p>
+
+    <div>
+        <h1>Comments</h1>
+        <div th:each="comment: ${product.comment}">
+            <p class="text-center" th:text="${comment.name} "></p>
+            <p class="text-center" th:text="${comment.email} "></p>
+            <p class="text-center" th:text="${comment.content} "></p>
+        </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold mb-4">Comments:</h2>
+        <h3 class="text-lg font-medium mb-6">Leave a comment</h3>
+        <form th:action="@{/{laptopId}/cmt(laptopId=${product.productId})}"
+              th:object="${comment}"
+              method="post" class="space-y-4" role="form">
+            <!-- Input Name -->
+            <div>
+                <input
+                        type="text"
+                        name="name"
+                        placeholder="Enter Name"
+                        th:field="*{name}"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required>
+            </div>
+            <!-- Input Email -->
+            <div>
+                <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter email"
+                        th:field="*{email}"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required>
+            </div>
+            <!-- Textarea Comment -->
+            <div>
+                <textarea
+                        name="comment"
+                        placeholder="Enter comment"
+                        th:field="*{content}"
+                        rows="5"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required></textarea>
+            </div>
+            <!-- Submit Button -->
+            <button
+                    type="submit"
+                    class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-200">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
